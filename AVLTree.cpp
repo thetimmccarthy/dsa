@@ -2,12 +2,14 @@
 #include <iostream>
 #include <queue>
 
-TreeNode* AVLTree::find(int val) {
-    TreeNode* head = root;
-    return AVLTree::_find(val, head);
+template <class T>
+TreeNode<T>* AVLTree<T>::find(T val) {
+    TreeNode<T>* head = root;
+    return AVLTree<T>::_find(val, head);
   }
 
-TreeNode* AVLTree::_find(int val, TreeNode* head) {
+template <class T>
+TreeNode<T>* AVLTree<T>::_find(T val, TreeNode<T>* head) {
   
     if (head == NULL) {
       return head;
@@ -15,24 +17,27 @@ TreeNode* AVLTree::_find(int val, TreeNode* head) {
     if (head->value == val) {
       return head;
     } else if (head->value >= val) {
-      return AVLTree::_find(val, head->left);
+      return AVLTree<T>::_find(val, head->left);
     } else {
-      return AVLTree::_find(val, head->right);
+      return AVLTree<T>::_find(val, head->right);
     }
   }
 
-void AVLTree::insert(int val) {
+template <class T>
+void AVLTree<T>::insert(T val) {
 
     if (find(val) == NULL) {
         
-        root = AVLTree::_insert(val, root);
+        root = AVLTree<T>::_insert(val, root);
         // std::cout << "head val: " << root->value << std::endl;
     }
 }
-TreeNode* AVLTree::_insert(int val, TreeNode* node) {
+
+template <class T>
+TreeNode<T>* AVLTree<T>::_insert(T val, TreeNode<T>* node) {
     
     if (node == NULL) {
-        TreeNode* x = new TreeNode(val);
+        TreeNode<T>* x = new TreeNode<T>(val);
         return x;
     } else if (val < node->value) {
         node->left = _insert(val, node->left);
@@ -40,16 +45,17 @@ TreeNode* AVLTree::_insert(int val, TreeNode* node) {
         node->right = _insert(val, node->right);
     }
 
-    AVLTree::update(node);
-    node = AVLTree::balance(node);
+    AVLTree<T>::update(node);
+    node = AVLTree<T>::balance(node);
     return node;
     
 
 }
 
-void AVLTree::update(TreeNode* node) {
-    int rh = -1;
-    int lh = -1;
+template <class T>
+void AVLTree<T>::update(TreeNode<T>* node) {
+    T rh = -1;
+    T lh = -1;
     
     if (node->right != NULL) {
         
@@ -67,63 +73,69 @@ void AVLTree::update(TreeNode* node) {
 
 }
 
- TreeNode* AVLTree::balance(TreeNode* node) {
-    int bal = node->bf;
+template <class T>
+TreeNode<T>* AVLTree<T>::balance(TreeNode<T>* node) {
+    T bal = node->bf;
     if (bal == -2) {
         
         if (node->left->bf < 0) {
-            node = AVLTree::rightRotation(node);
+            node = AVLTree<T>::rightRotation(node);
         } else {
-            node = AVLTree::leftRightRotation(node);
+            node = AVLTree<T>::leftRightRotation(node);
         }
     } else if (bal == 2) {
         if(node->right->bf > 0) {
-            node = AVLTree::leftRotation(node);
+            node = AVLTree<T>::leftRotation(node);
         } else {
-            node = AVLTree::rightLeftRotation(node);
+            node = AVLTree<T>::rightLeftRotation(node);
         }
     } 
-    return node;
+        return node;
 }
 
-TreeNode* AVLTree::rightRotation(TreeNode* node) {
-    TreeNode* left = node->left;
+template <class T>
+TreeNode<T>* AVLTree<T>::rightRotation(TreeNode<T>* node) {
+    TreeNode<T>* left = node->left;
     node->left = left->right;
     left->right = node;
     update(node);
     update(left);
-    
+
     return left;
 }
 
-TreeNode* AVLTree::leftRotation(TreeNode* node) {
-    TreeNode* right = node->right;
+template <class T>
+TreeNode<T>* AVLTree<T>::leftRotation(TreeNode<T>* node) {
+    TreeNode<T>* right = node->right;
     node->right = right->left;
     right->left = node;
-    
+
     update(node);
     update(right);
-    
+
     return right;
 }
 
-TreeNode* AVLTree::leftRightRotation(TreeNode* node) {
-    node->left = AVLTree::leftRotation(node->left);
-    return AVLTree::rightRotation(node);
+template <class T>
+TreeNode<T>* AVLTree<T>::leftRightRotation(TreeNode<T>* node) {
+    node->left = AVLTree<T>::leftRotation(node->left);
+    return AVLTree<T>::rightRotation(node);
 }
 
-TreeNode* AVLTree::rightLeftRotation(TreeNode* node) {
-    node->right = AVLTree::rightRotation(node->right);
-    return AVLTree::leftRotation(node);
+template <class T>
+TreeNode<T>* AVLTree<T>::rightLeftRotation(TreeNode<T>* node) {
+    node->right = AVLTree<T>::rightRotation(node->right);
+    return AVLTree<T>::leftRotation(node);
 }
 
-void AVLTree::breadthFirstTraversal() {
-    std::queue<TreeNode*> q;
+template <class T>
+void AVLTree<T>::breadthFirstTraversal() {
+    std::queue<TreeNode<T>*> q;
 
     q.push(root);
 
     while(!q.empty()) {
-        TreeNode* node = q.front();
+        TreeNode<T>* node = q.front();
         q.pop();
         if (node->left){
             q.push(node->left);

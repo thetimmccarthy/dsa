@@ -1,20 +1,20 @@
 #pragma once
 #include "TreeNode.h"
 #include <iostream>
-
+template <class T>
 class AVLTree {
   public:
-    TreeNode* root;
-    TreeNode* find(int val);
-    TreeNode* _find(int val, TreeNode* head);
-    void insert(int val);
-    TreeNode* _insert(int val, TreeNode* node);
-    void update(TreeNode* node);
-    TreeNode* balance(TreeNode* node);
-    TreeNode* rightRotation(TreeNode* node);
-    TreeNode* leftRotation(TreeNode* node);
-    TreeNode* rightLeftRotation(TreeNode* node);
-    TreeNode* leftRightRotation(TreeNode* node);
+    TreeNode<T>* root;
+    TreeNode<T>* find(T val);
+    TreeNode<T>* _find(T val, TreeNode<T>* head);
+    void insert(T val);
+    TreeNode<T>* _insert(T val, TreeNode<T>* node);
+    void update(TreeNode<T>* node);
+    TreeNode<T>* balance(TreeNode<T>* node);
+    TreeNode<T>* rightRotation(TreeNode<T>* node);
+    TreeNode<T>* leftRotation(TreeNode<T>* node);
+    TreeNode<T>* rightLeftRotation(TreeNode<T>* node);
+    TreeNode<T>* leftRightRotation(TreeNode<T>* node);
 
     void breadthFirstTraversal();
     

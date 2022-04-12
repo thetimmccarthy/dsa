@@ -1,8 +1,9 @@
 #include <iostream>
 #include "AVLTree.h"
+#include "AVLTree.cpp"
 
 int main () {
-    AVLTree* tree = new AVLTree();
+    AVLTree<int>* tree = new AVLTree<int>();
     
     tree->insert(4);
     tree->insert(5);

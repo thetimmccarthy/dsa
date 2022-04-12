@@ -1,15 +1,16 @@
 #pragma once
 #include "ListNode.h"
 #include <iostream>
+template <class T>
 class TreeNode {
   public:
-    int value;
+    T value;
     int height;  
     int bf;
-    TreeNode* left;  
-    TreeNode* right;
+    TreeNode<T>* left;  
+    TreeNode<T>* right;
     ListNode* listPtr;
-    TreeNode(int val) {
+    TreeNode(T val) {
       value = val;
       height = 0;
       bf = 0;
