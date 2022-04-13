@@ -19,7 +19,14 @@ class TreeNode {
       listPtr = NULL;
       
     }
-
+    TreeNode<T>& operator=(const TreeNode<T> & other) {
+      value = other.value;
+      height = other.height;
+      bf = other.bf;
+      left = other.left;
+      right = other.right;
+      listPtr = other.listPtr;
+    }
 
     
 };
