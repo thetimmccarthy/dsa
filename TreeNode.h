@@ -9,14 +9,13 @@ class TreeNode {
     int bf;
     TreeNode<T>* left;  
     TreeNode<T>* right;
-    ListNode* listPtr;
+    ListNode<T>* listPtr;
     TreeNode(T val) {
       value = val;
       height = 0;
       bf = 0;
       left = NULL;
       right = NULL;
-      listPtr = NULL;
       
     }
     TreeNode<T>& operator=(const TreeNode<T> & other) {
@@ -25,7 +24,6 @@ class TreeNode {
       bf = other.bf;
       left = other.left;
       right = other.right;
-      listPtr = other.listPtr;
     }
 
     

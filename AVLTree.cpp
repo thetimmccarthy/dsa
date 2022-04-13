@@ -2,6 +2,7 @@
 #include <iostream>
 #include <queue>
 
+
 template <class T>
 TreeNode<T>* AVLTree<T>::find(T val) {
     TreeNode<T>* head = root;
@@ -70,6 +71,7 @@ TreeNode<T>* AVLTree<T>::_insert(T val, TreeNode<T>* node) {
         return x;
     } else if (val < node->value) {
         node->left = _insert(val, node->left);
+
     } else {
         node->right = _insert(val, node->right);
     }
@@ -77,6 +79,13 @@ TreeNode<T>* AVLTree<T>::_insert(T val, TreeNode<T>* node) {
     AVLTree<T>::update(node);
     node = AVLTree<T>::balance(node);
     return node;
+}
+
+template <class T>
+void AVLTree<T>::insertIntoList(TreeNode<T>* newNode, TreeNode<T>* node) {
+    
+
+
 }
 
 template <class T>

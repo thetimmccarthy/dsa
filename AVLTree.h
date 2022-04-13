@@ -1,5 +1,6 @@
 #pragma once
 #include "TreeNode.h"
+#include "ListNode.h"
 #include <iostream>
 template <class T>
 class AVLTree {
@@ -11,6 +12,7 @@ class AVLTree {
     TreeNode<T>* _findParent(T val, TreeNode<T>* node);
     void insert(T val);
     TreeNode<T>* _insert(T val, TreeNode<T>* node);
+    void insertIntoList(TreeNode<T>* newNode, TreeNode<T>* node);
     void deleteNode(T val);
     TreeNode<T>* _deleteNode(T val, TreeNode<T>* node);
     void update(TreeNode<T>* node);

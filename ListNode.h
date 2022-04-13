@@ -1,11 +1,13 @@
 #pragma once
+
+template <class T>
 class ListNode {
   public:
-    int value;
-    ListNode* next;
-    ListNode* prev;
+    T value;
+    ListNode<T>* next;
+    ListNode<T>* prev;
 
-    ListNode(int val) {
+    ListNode<T>(T val) {
       value = val;
     }
 };
